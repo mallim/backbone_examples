@@ -1,0 +1,10 @@
+temp
+dist
+node_modules
+components
+app/**/vendor
+*.iml
+.idea
+npm-debug.log
+
+

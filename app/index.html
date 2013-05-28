@@ -1,0 +1,99 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <title></title>
+    <link rel="stylesheet" href="styles/bootstrap.css">
+    <script src="scripts/vendor/requirejs/require.js"></script>
+    <script>
+        require.config({
+            map:{
+                '*':{
+                    css:'vendor/require-css/css'
+                }
+            }
+        });
+    </script>
+</head>
+<body id="main-layout">
+
+<!-- Main container. -->
+<script type="text/x-handlebars-template" id="default_layout">
+<div role="main" id="main" class="container">
+    <div class="hero-unit">
+        <h1>My Backbone Demos</h1>
+
+        <p>You now have</p>
+        <ul>
+            <li><a href="#superbasic/index">Tutorial 1: superbasic</a></li>
+            <li><a href="#events/index">Tutorial 2: Count - About Events</a></li>
+            <li><a href="#cats/index">Tutorial 3: Angry Cats - About Collections</a></li>
+            <li><a href="#things/index">Tutorial 4: Things - About Routings</a></li>
+            <li><a href="#links/index">Tutorial 4: Links - About Local Storage</a></li>
+            <li>Mocha</li>
+        </ul>
+        <section id="content">Loading....</section>
+    </div>
+</div>
+</script>
+
+<script type="text/template" id="angry_cat-template">
+
+</script>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser
+    today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better
+    experience this site.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+
+<!-- Templates -->
+<!-- *Remember, anything that you want to register an event on must be part of your view!* -->
+
+<script type="text/template" id="thing-template">
+    <a class='task' href="<%= href %>"><%= text %></a>
+</script>
+
+<!-- build:js scripts/amd-app.js -->
+<script type="text/javascript">
+
+    require.config({
+        baseUrl: "scripts"
+    });
+
+    // Load common code that includes config,
+    // then load the app logic for this page.
+    require(['common'], function (common) {
+
+        // ./js/common.js sets the baseUrl to be ./js/
+        // You can ask for 'app/main-contact' here instead
+        // of './js/app/main-contact'
+        require([
+            'app',
+            'superbasic/app',
+            'count/app',
+            'cats/app',
+            'things/app',
+            'links/app'
+        ], function( app ){
+            //console.log("Starting in index.html");
+            "use strict";
+            app.start();
+        });
+    });
+</script>
+<!-- endbuild -->
+</body>
+</html>
