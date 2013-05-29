@@ -7,7 +7,7 @@ define([
     'backbone.marionette',
     'libs/msgBus',
     'libs/Marionette.SubAppRouter',
-    'hbs!count/count-view',
+    'hbs!count/count_view',
     'backbone.stickit'
 ],
 function (Backbone, Marionette, msgBus, SubAppRouter, CountViewTpl ) {

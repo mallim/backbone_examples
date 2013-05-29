@@ -3,13 +3,15 @@
 // https://github.com/ddellacosta/backbone.js-examples/tree/master/super_basic1
 //
 define([
+    'jquery',
     'backbone',
     'backbone.marionette',
     'libs/msgBus',
     'libs/Marionette.SubAppRouter',
+    'bootstrap-modal',
     'handlebars'
 ],
-function (Backbone, Marionette, msgBus, SubAppRouter ) {
+function ( $, Backbone, Marionette, msgBus, SubAppRouter ) {
 
     // Advanced version ...
     // var modelSuperBasic = msgBus.reqres.request("superbasic:i_want_my_model");
@@ -35,8 +37,13 @@ function (Backbone, Marionette, msgBus, SubAppRouter ) {
         load: function(){
             var theModel = new SuperBasicModel({simple: "okay, I've figured out the super-basics.  Woohoo!"} );
             var theView = new SuperBasicView( { model:theModel});
-            var region = msgBus.reqres.request( "app:request:showRegion");
-            return region.show( theView );
+            var theDialogBoxOptions = {
+                title:'Test Dialog Box',
+                content:theView
+            }
+            var theDialogBox = new Backbone.BootstrapModal( theDialogBoxOptions  );
+            theDialogBox.open();
+            window.history.back();
         }
     });
 
@@ -50,7 +57,7 @@ function (Backbone, Marionette, msgBus, SubAppRouter ) {
         var options = {
             controller: new Controller()
         }
-        console.log( "superbasic app;start:route");
+        //console.log( "superbasic app;start:route");
         return new Router( "superbasic", options );
     });
 });

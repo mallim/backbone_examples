@@ -74,7 +74,7 @@ define([
 
             tagName: 'tr',
             className: 'angry_cat',
-            template:AngryCatViewTpl,
+            template:AngryCatViewTpl
         });
 
         var AngryCatsView = Marionette.CompositeView.extend({

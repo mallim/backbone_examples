@@ -6,7 +6,9 @@
         "backbone.babysitter":"0.0.6",
         "Backbone.localStorage":"1.1.4",
         "backbone.stickit":"0.6.3",
+        "backbone-validation":"0.7.1",
         "backbone.wreqr":"0.2.0",
+        "bootstrap":"2.3.2",
         "chai":"1.6.0",
         "handlebars.js":"1.0.10",
         "jquery":"1.9.1",
@@ -33,8 +35,15 @@
         "backbone.stickit":{
             "":"backbone.stickit.js"
         },
+        "backbone-validation":{
+            "":"dist/backbone-validation-amd.js"
+        },
         "backbone.wreqr":{
             "":"lib/amd/backbone.wreqr.js"
+        },
+        "bootstrap":{
+            "js":"docs/assets/js/bootstrap.js",
+            "css":"docs/assets/css/bootstrap*.css"
         },
         "chai":{
             "":"chai.js"

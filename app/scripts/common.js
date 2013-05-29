@@ -7,7 +7,9 @@ requirejs.config({
         'backbone.marionette':'vendor/marionette/backbone.marionette',
         'backbone.babysitter':'vendor/backbone.babysitter/backbone.babysitter',
         'backbone.stickit':'vendor/backbone.stickit/backbone.stickit',
+        'backbone.validation':'vendor/backbone-validation/backbone-validation-amd',
         'backbone.wreqr':'vendor/backbone.wreqr/backbone.wreqr',
+        'bootstrap':'vendor/bootstrap/js/bootstrap',
         chai:'vendor/chai/chai',
         css:'vendor/require-css/css',
         'css-builder':'vendor/require-css/css-builder',
@@ -28,9 +30,12 @@ requirejs.config({
         normalize:'vendor/require-css/normalize',
         underscore:'vendor/underscore/underscore',
         text:'vendor/requirejs-text/text',
-		tpl:'vendor/requirejs-tpl/tpl'
+		tpl:'vendor/requirejs-tpl/tpl',
         // END List those which are manage by bower first
 
+        // This one cannot be updated by using bower
+        'bootstrap-modal':'libs/backbone.bootstrap-modal',
+        'modalDialog':'libs/Backbone.ModalDialog'
         // From here onwardds, the config are for our own internal usage
     },
 
@@ -44,8 +49,30 @@ requirejs.config({
             deps : ['jquery', 'underscore', 'backbone'],
             exports:"Backbone.Marionette"
         },
+        'bootstrap-modal':{
+            deps : ['jquery', 'underscore', 'backbone', 'bootstrap' ],
+            exports:"Backbone.BootstrapModal"
+        },
         'backbone.stickit':{
             deps:["backbone"]
+        },
+        'bootstrap':{
+            deps:['jquery']
+        },
+        handlebars:{
+            exports:"Handlebars"
+        },
+        hbs:{
+            deps:[ 'handlebars', 'json2' ]
+        },
+        jquery:{
+            exports:'$'
+        },
+        json2:{
+            exports:'JSON'
+        },
+        modalDialog:{
+            deps : ['backbone']
         },
         tpl:{
             deps:['text']

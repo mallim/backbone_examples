@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <title></title>
-    <link rel="stylesheet" href="styles/bootstrap.css">
+    <link rel="stylesheet" href="scripts/vendor/bootstrap/css/bootstrap.css">
     <script src="scripts/vendor/requirejs/require.js"></script>
     <script>
         require.config({
@@ -35,12 +35,12 @@
 
         <p>You now have</p>
         <ul>
-            <li><a href="#superbasic/index">Tutorial 1: superbasic</a></li>
+            <li><a href="#superbasic/index">Tutorial 1: superbasic (with dialog 1)</a></li>
             <li><a href="#events/index">Tutorial 2: Count - About Events</a></li>
             <li><a href="#cats/index">Tutorial 3: Angry Cats - About Collections</a></li>
             <li><a href="#things/index">Tutorial 4: Things - About Routings</a></li>
             <li><a href="#links/index">Tutorial 4: Links - About Local Storage</a></li>
-            <li>Mocha</li>
+            <li><a href="#person/index">Tutorial 5: About Dialog 2</a></li>
         </ul>
         <section id="content">Loading....</section>
     </div>
@@ -62,10 +62,6 @@
 <!-- Templates -->
 <!-- *Remember, anything that you want to register an event on must be part of your view!* -->
 
-<script type="text/template" id="thing-template">
-    <a class='task' href="<%= href %>"><%= text %></a>
-</script>
-
 <!-- build:js scripts/amd-app.js -->
 <script type="text/javascript">
 
@@ -86,7 +82,8 @@
             'count/app',
             'cats/app',
             'things/app',
-            'links/app'
+            'links/app',
+            'person/app'
         ], function( app ){
             //console.log("Starting in index.html");
             "use strict";
