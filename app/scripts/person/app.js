@@ -226,7 +226,7 @@ function (Backbone, Marionette, msgBus, SubAppRouter, PersonMainViewTpl ) {
         testPerm:function( event ){
             event.preventDefault();
             var view = new PermanentView();
-            view.render().( {permanentlyVisible: true});
+            view.render( {permanentlyVisible: true});
         }
     });
 
