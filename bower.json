@@ -11,7 +11,9 @@
         "bootstrap":"2.3.2",
         "chai":"1.6.0",
         "handlebars.js":"1.0.10",
+        "jqgrid":"4.5.2",		
         "jquery":"1.9.1",
+        "jqueryuibootstrap":"latest",		
         "json2":"latest",
         "marionette":"1.0.3",
         "mocha":"1.9.0",
@@ -54,6 +56,11 @@
         "json2":{
             "":"json2.js"
         },
+        "jqgrid":{
+            "i18n":"js/i18n/*.js",
+            "js":"js/minified/jquery.jqGrid.min.js",
+            "css":"css/ui.jqgrid.css"
+        },		
         "marionette":{
             "":"lib/core/amd/backbone.marionette.js"
         },
