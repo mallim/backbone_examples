@@ -17,6 +17,7 @@
         "json2":"latest",
         "marionette":"1.0.3",
         "mocha":"1.9.0",
+        "modernizr":"2.6.2",
         "requirejs":"2.1.6",
         "require-css":"git://github.com/mallim/require-css.git",
         "requirejs-domready":"2.0.1",
@@ -25,7 +26,8 @@
         "requirejs-plugins":"1.0.2",
         "requirejs-text":"latest",
 		"requirejs-tpl":"git://github.com/jfparadis/requirejs-tpl.git",
-        "underscore":"1.4.4"
+        "underscore":"1.4.4",
+        "underscore.string":"2.3.1"
     },
     "exportsOverride":{
         "backbone":{
@@ -64,6 +66,9 @@
         "marionette":{
             "":"lib/core/amd/backbone.marionette.js"
         },
+        "modernizr":{
+            "":"modern*.js"
+        },
         "requirejs":{
             "":"require.js"
         },
@@ -82,6 +87,9 @@
 		},
         "underscore":{
             "":"underscore.js"
+        },
+        "underscore.string":{
+            "":"lib/*.js"
         }
     }
 

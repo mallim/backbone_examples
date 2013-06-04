@@ -26,9 +26,11 @@ requirejs.config({
         lessc:'vendor/require-less/lessc',
         'lessc-server':'vendor/require-less/lessc-server',
         localstorage:'vendor/Backbone.localStorage/backbone.localStorage',
-        mocha:'vendor/mocha',
+        mocha:'vendor/mocha/mocha',
+        modernizr:'vendor/modernizr/modernizr',
         normalize:'vendor/require-css/normalize',
         underscore:'vendor/underscore/underscore',
+        "underscore.string":'vendor/underscore.string/underscore.string',
         text:'vendor/requirejs-text/text',
 		tpl:'vendor/requirejs-tpl/tpl',
         // END List those which are manage by bower first
@@ -86,7 +88,7 @@ requirejs.config({
     },
 
     tpl: {
-        extension: '.htm'
+        extension: '.tpl'
     },
 
     // hbs config
@@ -95,19 +97,13 @@ requirejs.config({
         // doesn't require the json i18n files (e.g. en_us.json)
         // (false by default)
 
-        disableHelpers: true,     // When true, won't look for and try to automatically load
-        // helpers (false by default)
+        // disableHelpers: true,     // When true, won't look for and try to automatically load helpers (false by default)
 
-        /**
-        helperPathCallback:       // Callback to determine the path to look for helpers
-            function (name) {       // ('/template/helpers/'+name by default)
-                return 'cs!' + name;
-            },
-        **/
-
-        templateExtension: "htm", // Set the extension automatically appended to templates
+        // templateExtension: "html", // Set the extension automatically appended to templates
         // ('hbs' by default)
 
-        compileOptions: {}        // options object which is passed to Handlebars compiler
+        compileOptions: {},        // options object which is passed to Handlebars compiler
+
+        helperDirectory:'helpers'
     }
 });

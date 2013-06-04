@@ -1,0 +1,5 @@
+{{#if isTarget}}
+    <a href="{{targetURL}}" target="_blank">{{description}}</a>
+{{else}}
+    <a href='#gotoModule' data-module='{{module}}'>{{description}}</a>
+{{/if}}
