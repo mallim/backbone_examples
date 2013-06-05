@@ -15,6 +15,7 @@
         "jquery":"1.9.1",
         "jqueryuibootstrap":"latest",		
         "json2":"latest",
+        "lodash":"latest",
         "marionette":"1.0.3",
         "mocha":"1.9.0",
         "modernizr":"2.6.2",
@@ -63,7 +64,10 @@
             "i18n":"js/i18n/*.js",
             "js":"js/minified/jquery.jqGrid.min.js",
             "css":"css/ui.jqgrid.css"
-        },		
+        },
+        "lodash":{
+            "":"dist/lodash.underscore.js"
+        },
         "marionette":{
             "":"lib/core/amd/backbone.marionette.js"
         },

@@ -29,7 +29,7 @@ requirejs.config({
         mocha:'vendor/mocha/mocha',
         modernizr:'vendor/modernizr/modernizr',
         normalize:'vendor/require-css/normalize',
-        underscore:'vendor/underscore/underscore',
+        underscore:'vendor/lodash/lodash.underscore',
         "underscore.string":'vendor/underscore.string/underscore.string',
         text:'vendor/requirejs-text/text',
 		tpl:'vendor/requirejs-tpl/tpl',
