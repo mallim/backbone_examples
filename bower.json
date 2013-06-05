@@ -18,6 +18,7 @@
         "marionette":"1.0.3",
         "mocha":"1.9.0",
         "modernizr":"2.6.2",
+        "normalize-css":"latest",
         "requirejs":"2.1.6",
         "require-css":"git://github.com/mallim/require-css.git",
         "requirejs-domready":"2.0.1",
