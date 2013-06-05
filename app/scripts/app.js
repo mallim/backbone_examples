@@ -17,8 +17,8 @@ function (Backbone, $, msgBus, Marionette ) {
 
     // initialize Marionette regions
     app.addRegions({
-        nav:"#tutorial_region",
-        content:"#content"
+        nav:"#main_content"
+        // content:"#main_content"
     });
 
     app.addInitializer(function () {

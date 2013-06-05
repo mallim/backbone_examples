@@ -65,5 +65,9 @@ define([
         app.nav.show( LandingModule.mainView );
     });
 
+    LandingModule.addFinalizer(function(){
+        LandingModule.mainView.close();
+    });
+
     return LandingModule;
 });

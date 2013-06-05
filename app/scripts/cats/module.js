@@ -3,6 +3,7 @@
 // https://github.com/ddellacosta/backbone.js-examples/tree/master/collections3
 //
 define([
+    '../app',
     'backbone',
     'backbone.marionette',
     'libs/msgBus',
@@ -11,7 +12,7 @@ define([
     'hbs!cats/angry_cat_view',
     'less!cats/collections3'
 ],
-    function (Backbone, Marionette, msgBus, SubAppRouter, AngryCatsViewTpl, AngryCatViewTpl ) {
+    function ( app, Backbone, Marionette, msgBus, SubAppRouter, AngryCatsViewTpl, AngryCatViewTpl ) {
 
         "use strict";
 
@@ -118,6 +119,24 @@ define([
             }
         });
 
+        var CatsModule = app.module( "cats" );
+
+        CatsModule.addInitializer(function(){
+            var cats = new AngryCats([
+                new AngryCat({ id:1, name: 'Wet Cat', image_path: 'images/cat2.jpg' }),
+                new AngryCat({ id:2, name: 'Bitey Cat', image_path: 'images/cat1.jpg' }),
+                new AngryCat({ id:3, name: 'Surprised Cat', image_path: 'images/cat3.jpg' })
+            ]);
+
+            cats.add([new AngryCat({ id:4, name: 'Cranky Cat', image_path: 'images/cat4.jpg' })]);
+            var catsView = new AngryCatsView({ collection: cats });
+
+            app.nav.show( catsView );
+        });
+
+        return CatsModule;
+
+        /**
         var Controller = Marionette.Controller.extend({
 
             initialize: function(options){
@@ -154,5 +173,6 @@ define([
             console.log( "cats app:start:route");
             return new Router( "cats", options );
         });
+        **/
 
     });
