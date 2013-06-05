@@ -53,7 +53,7 @@ define([
 
     var _tutorials = new TutorialCollection();
     _tutorials.add( new TutorialModel({id:1, module:"superbasic", description:"Tutorial 1: superbasic (with dialog 1)", stopLanding:false}));
-    _tutorials.add( new TutorialModel({id:2, module:"events", description:"Tutorial 2: Count - About Events"}));
+    _tutorials.add( new TutorialModel({id:2, module:"count", description:"Tutorial 2: Count - About Events"}));
     _tutorials.add( new TutorialModel({id:3, module:"cats", description:"Tutorial 3: Angry Cats - About Collections"}));
     _tutorials.add( new TutorialModel({id:4, module:"things", description:"Tutorial 4: Things - About Routings"}));
     _tutorials.add( new TutorialModel({id:5, module:"links", description:"Tutorial 5: Links - About Local Storage"}));

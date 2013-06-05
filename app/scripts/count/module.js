@@ -3,6 +3,7 @@
 // https://github.com/ddellacosta/backbone.js-examples/tree/master/events2
 //
 define([
+    "../app",
     'backbone',
     'backbone.marionette',
     'libs/msgBus',
@@ -10,9 +11,11 @@ define([
     'hbs!count/count_view',
     'backbone.stickit'
 ],
-function (Backbone, Marionette, msgBus, SubAppRouter, CountViewTpl ) {
+function ( app, Backbone, Marionette, msgBus, SubAppRouter, CountViewTpl ) {
 
     "use strict";
+
+    var CountModule = app.module( "count" );
 
     var Counter = Backbone.Model.extend({
         defaults: {
@@ -64,6 +67,15 @@ function (Backbone, Marionette, msgBus, SubAppRouter, CountViewTpl ) {
         }
     });
 
+    CountModule.addInitializer(function(){
+        var myCounter = new Counter();
+        var myCounterView = new CounterView({ model: myCounter});
+        app.nav.show( myCounterView );
+    });
+
+    return CountModule;
+
+    /**
     var Controller = Marionette.Controller.extend({
 
         initialize: function(options){
@@ -93,4 +105,5 @@ function (Backbone, Marionette, msgBus, SubAppRouter, CountViewTpl ) {
         console.log( "counts app:start:route");
         return new Router( "events", options );
     });
+    **/
 });
