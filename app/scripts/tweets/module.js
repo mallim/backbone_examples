@@ -5,12 +5,11 @@
 define([
     'backbone',
     'backbone.marionette',
-    'libs/msgBus',
-    'libs/Marionette.SubAppRouter',
     'libs/StreamCollection',
+    '../app',
     'handlebars'
 ],
-    function (Backbone, Marionette, msgBus, SubAppRouter, StreamCollection ) {
+    function ( Backbone, Marionette, StreamCollection, app ) {
 
         "use strict";
 
@@ -54,6 +53,22 @@ define([
             itemView: TweetView
         });
 
+        var TweetsModule = app.module( "tweets" );
+
+        TweetsModule.addInitializer(function(){
+            var catTweets = new Tweets([], { query : "cats" });
+            var catTweetsView = new TweetsView({ collection : catTweets });
+            app.nav.show( catTweetsView );
+            catTweets.stream({
+                interval: 2000,
+                add: true
+            });
+            app.nav.show( catTweetsView );
+        });
+
+        return TweetsModule;
+
+        /**
         var Controller = Marionette.Controller.extend({
 
             initialize: function(options){
@@ -86,5 +101,6 @@ define([
             console.log( "tweets app:start:route");
             return new Router( "tweets", options );
         });
+        **/
 
     });

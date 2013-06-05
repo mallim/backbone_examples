@@ -80,9 +80,9 @@ requirejs.config({
             deps:['text']
         },
         underscore:{
-            exports:"_"
+            exports: '_'
         },
-        'underscore-string':{
+        'underscore.string': {
             deps: ['underscore']
         }
     },

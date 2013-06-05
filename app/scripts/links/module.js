@@ -4,6 +4,7 @@
  *  https://github.com/ddellacosta/backbone.js-examples/tree/master/localstorage5
  */
 define([
+    '../app',
     'backbone',
     'backbone.marionette',
     'libs/msgBus',
@@ -13,12 +14,11 @@ define([
     'localstorage',
     'less!links/links'
 ],
-    function (Backbone, Marionette, msgBus, SubAppRouter, LinkViewTpl, LinksViewTpl ) {
+    function ( app, Backbone, Marionette, msgBus, SubAppRouter, LinkViewTpl, LinksViewTpl ) {
 
         "use strict";
 
-        var Link = Backbone.Model.extend({
-        });
+        var Link = Backbone.Model.extend({});
 
         var Links = Backbone.Collection.extend({
             model: Link,  // <-- this needs to be a function reference, not a string!
@@ -76,6 +76,16 @@ define([
             }
         });
 
+        var LinkModule = app.module( "links" );
+
+        LinkModule.addInitializer(function(){
+            var view = new LinksView({ collection: new Links() })
+            app.nav.show( view );
+        });
+
+        return LinkModule;
+
+        /**
         var Controller = Marionette.Controller.extend({
 
             initialize: function(options){
@@ -104,6 +114,7 @@ define([
             console.log( "links app:start:route");
             return new Router( "links", options );
         });
+        **/
 
     });
 

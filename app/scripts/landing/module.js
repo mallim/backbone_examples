@@ -18,6 +18,10 @@ define([
             'click a': 'routeToMain'
         },
         routeToMain: function(event) {
+            if( this.model.get( 'isTarget' ) ) {
+                window.open( this.model.targetURL(), '_blank');
+                return;
+            }
             if( this.model.get("stopLanding") ) LandingModule.stop();
             require( [ this.model.moduleURL() ], function( module ) {
                 module.start();
@@ -34,13 +38,13 @@ define([
 
     var TutorialModel = Backbone.Model.extend({
         defaults:{
-            stopLanding:true
+            stopLanding:true,
+            isTarget:false,
+            targetURL:null
         },
-        isTarget: function() {
-            return _.str.substr( this.get('module'), 0, 1 ).equalsIgnoreCase( '!');
-        },
-        targetURL:function(){
-            return _.str.substr( this.get('module'), 1 );
+        initialize:function(){
+            this.set( 'isTarget',  _.str.startsWith( this.get('module'), '!' ) );
+            this.set( 'targetURL', this.get( 'module').substring( 1 ) );
         },
         moduleURL:function(){
             return this.get("module") + "/module";
@@ -58,7 +62,7 @@ define([
     _tutorials.add( new TutorialModel({id:4, module:"things", description:"Tutorial 4: Things - About Routings"}));
     _tutorials.add( new TutorialModel({id:5, module:"links", description:"Tutorial 5: Links - About Local Storage"}));
     _tutorials.add( new TutorialModel({id:6, module:"tweets", description:"Tutorial 6: Live Collections"}));
-    _tutorials.add( new TutorialModel({id:7, module:"!jqgrid_test.html", description:"Example of JQGrid with jQueryUI Bootstrap" }));
+    _tutorials.add( new TutorialModel({id:7, module:"!jqgrid_test.html", description:"Example of JQGrid with jQueryUI Bootstrap", stopLanding:false }));
 
     LandingModule.addInitializer(function(){
         LandingModule.mainView = new LandingCompositeView({collection: _tutorials});

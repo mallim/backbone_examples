@@ -5,11 +5,10 @@
 define([
     'backbone',
     'backbone.marionette',
-    'libs/msgBus',
-    'libs/Marionette.SubAppRouter',
+    '../app',
     'css!things/things'
 ],
-function (Backbone, Marionette, msgBus, SubAppRouter ) {
+function (Backbone, Marionette, app ) {
 
     "use strict";
 
@@ -30,6 +29,15 @@ function (Backbone, Marionette, msgBus, SubAppRouter ) {
             <%= text %></a>\
         ")
     });
+
+    var ThingModule = app.module( "things" );
+
+    ThingModule.addInitializer(function(){
+        ThingModule.myThingView = new ThingView();
+        app.nav.show( ThingModule.myThingView );
+    });
+
+    return ThingModule;
 
     var Controller = Marionette.Controller.extend({
 
