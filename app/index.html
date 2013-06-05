@@ -125,6 +125,7 @@
         <div id="tutorial_region" class="container text-center">
             <h1>Backbone Examples</h1>
             <h4>These are just examples, don't get too excited!. Click on one to continue.</h4>
+            <!--
             <div id="backbone_tutorials">
                 <ul class="text-left">
                     <li><a href="#superbasic/index">Tutorial 1: superbasic (with dialog 1)</a></li>
@@ -136,6 +137,7 @@
                     <li><a href="jqgrid_test.html" target="_blank">Example of JQGrid with jQueryUI Bootstrap</a></li>
                 </ul>
             </div>
+            -->
         </div>
     </header>
 
@@ -162,7 +164,8 @@
             // You can ask for 'app/main-contact' here instead
             // of './js/app/main-contact'
             require([
-                'app'
+                'app',
+                'landing/module'
             ], function( app ){
                 //console.log("Starting in index.html");
                 "use strict";
