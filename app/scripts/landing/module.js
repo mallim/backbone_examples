@@ -19,12 +19,13 @@ define([
         },
         routeToMain: function(event) {
             if( this.model.get( 'isTarget' ) ) {
-                window.open( this.model.targetURL(), '_blank');
+                //app.router.navigate('/', {trigger: true});
                 return;
             }
             if( this.model.get("stopLanding") ) LandingModule.stop();
             require( [ this.model.moduleURL() ], function( module ) {
                 module.start();
+                app.vent.trigger("module:start", module );
             });
         }
     });
@@ -61,7 +62,7 @@ define([
     _tutorials.add( new TutorialModel({id:3, module:"cats", description:"Tutorial 3: Angry Cats - About Collections"}));
     _tutorials.add( new TutorialModel({id:4, module:"things", description:"Tutorial 4: Things - About Routings"}));
     _tutorials.add( new TutorialModel({id:5, module:"links", description:"Tutorial 5: Links - About Local Storage"}));
-    _tutorials.add( new TutorialModel({id:6, module:"tweets", description:"Tutorial 6: Live Collections"}));
+    _tutorials.add( new TutorialModel({id:6, module:"tweets", description:"Tutorial 6: Live Collections. Twitter no result!"}));
     _tutorials.add( new TutorialModel({id:7, module:"!jqgrid_test.html", description:"Example of JQGrid with jQueryUI Bootstrap", stopLanding:false }));
 
     LandingModule.addInitializer(function(){

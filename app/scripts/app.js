@@ -10,10 +10,10 @@ function (Backbone, $, msgBus, Marionette ) {
 
     "use strict";
 
-    //console.log("Staring MainApp")
-
     // set up the app instance
     var app = new Marionette.Application();
+
+    var currentModule;
 
     // initialize Marionette regions
     app.addRegions({
@@ -21,31 +21,25 @@ function (Backbone, $, msgBus, Marionette ) {
         // content:"#main_content"
     });
 
-    app.addInitializer(function () {
-        return msgBus.events.trigger( "initialize:before" );
-    });
-
     // contextual startup
     app.on("initialize:after", function(){
-        msgBus.events.trigger("app:main:show");
+        app.router = new Router();
+        //msgBus.events.trigger("app:main:show");
         // And hook up history tracking
         if (!Backbone.history.started) {
             return Backbone.history.start();
         }
     });
 
-    app.on("start", function () {
-        msgBus.commands.execute("initialize:ui");
-    });
-
-    /**
-    msgBus.events.on("app:main:show", function(view) {
-        return app.mainRegion.show(view);
-    });
-    **/
-
-    msgBus.reqres.setHandler("app:request:showRegion", function() {
-        return defaultLayout.content;
+    //
+    // Handles the event to stop previous module to release resources
+    // Idea from https://gist.github.com/yethee/3729470
+    //
+    app.vent.on("module:start", function(module) {
+        if (currentModule && currentModule !== module) {
+            currentModule.stop();
+        }
+        currentModule = module;
     });
 
     // export the app from this module

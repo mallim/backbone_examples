@@ -20,13 +20,16 @@ define([
         var TweetView = Marionette.ItemView.extend({
             tagName : "li",
             className : "tweet",
-            template:Handlebars.compile("It's {{ text }}")
+            template:Handlebars.compile("It's {{text}}")
         });
 
-        var Tweets = StreamCollection.extend({
+        var TweetsPrevious = Backbone.Collection.extend({
             model : Tweet,
+
             initialize : function(models, options) {
                 this.query = options.query;
+                // Assign the Deferred issued by fetch() as a property
+                this.deferred = this.fetch();
             },
             url : function() {
                 return "http://search.twitter.com/search.json?q=" + this.query + "&callback=?";
@@ -35,6 +38,36 @@ define([
                 // note that the original result contains tweets inside of a 'results' array, not at
                 // the root of the response.
                 return data.results;
+            },
+            add : function(models, options) {
+                var newModels = [];
+                _.each(models, function(model) {
+                    if (_.isUndefined(this.get(model.id))) {
+                        newModels.push(model);
+                    }
+                }, this);
+                return Backbone.Collection.prototype.add.call(this, newModels, options);
+            }
+        });
+
+        // Assign the Deferred issued by fetch() as a property
+        // Idea from http://quickleft.com/blog/leveraging-deferreds-in-backbonejs
+        //
+        // Set Interval
+        // Idea from http://stackoverflow.com/questions/11234431/backbone-js-bind-this-to-setinterval
+        //
+        var Tweets = Backbone.Collection.extend({
+            model : Tweet,
+            initialize : function(models, options) {
+                this.query = options.query;
+            },
+            parse : function(data) {
+                // note that the original result contains tweets inside of a 'results' array, not at
+                // the root of the response.
+                return data.results;
+            },
+            url : function() {
+                return "http://search.twitter.com/search.json?q=" + this.query + "&callback=?";
             },
             add : function(models, options) {
                 var newModels = [];
@@ -56,14 +89,24 @@ define([
         var TweetsModule = app.module( "tweets" );
 
         TweetsModule.addInitializer(function(){
+            var TweetsModule = app.module( "tweets" );
             var catTweets = new Tweets([], { query : "cats" });
             var catTweetsView = new TweetsView({ collection : catTweets });
-            app.nav.show( catTweetsView );
-            catTweets.stream({
-                interval: 2000,
-                add: true
+            setInterval(function() {
+                console.log('Setting up calling fetch');
+                catTweets.fetch({update:true})
+                    .done(function(){
+                        console.log( "Yap I have fetch something...", catTweets.toJSON() );
+                        app.nav.show( catTweetsView );
+                    });
+            }.bind(this), 6000);
+
+            /**
+            catTweets.deferred.done(function() {
+                console.log( "Yap I have fetch something...");
             });
-            app.nav.show( catTweetsView );
+            **/
+
         });
 
         return TweetsModule;
