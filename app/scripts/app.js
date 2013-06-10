@@ -23,7 +23,7 @@ function (Backbone, $, msgBus, Marionette ) {
 
     // contextual startup
     app.on("initialize:after", function(){
-        app.router = new Router();
+        // app.router = new Router();
         //msgBus.events.trigger("app:main:show");
         // And hook up history tracking
         if (!Backbone.history.started) {

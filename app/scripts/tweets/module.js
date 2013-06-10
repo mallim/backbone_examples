@@ -94,12 +94,10 @@ define([
             var catTweetsView = new TweetsView({ collection : catTweets });
             setInterval(function() {
                 console.log('Setting up calling fetch');
-                catTweets.fetch({update:true})
-                    .done(function(){
-                        console.log( "Yap I have fetch something...", catTweets.toJSON() );
-                        app.nav.show( catTweetsView );
-                    });
+                catTweets.fetch();
             }.bind(this), 6000);
+
+            app.nav.show( catTweetsView );
 
             /**
             catTweets.deferred.done(function() {
